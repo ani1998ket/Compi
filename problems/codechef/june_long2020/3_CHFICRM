@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int T; 
+	cin >> T;
+	while( T-- ){
+	    bool all_served = true;
+	    int coins_5  = 0;
+	    int coins_10 = 0;
+	    
+	    int N;
+	    cin >> N;
+	    int money = 0;
+	    for( int i = 0; i < N; i++){
+	        cin >> money;
+	        if( money == 5 ){
+	            coins_5++;
+	        }else if( money == 10){
+	            if( coins_5 > 0){
+	                coins_10++;
+	                coins_5--;
+	            }else{
+	                all_served = false;
+	            }
+	        }else if( money == 15){
+	            if( coins_10 > 0){
+	                coins_10--;
+	            }else if ( coins_5 > 1 ){
+	                coins_5 -= 2;
+	            }else{
+	                all_served = false;
+	            }   
+	        }
+           
+	    }
+	    
+	    if( all_served ){
+	        cout << "YES";
+	    }else{
+	        cout << "NO";
+	    }
+	    cout << endl;
+	}
+	return 0;
+}
+
